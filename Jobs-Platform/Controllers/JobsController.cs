@@ -1,5 +1,4 @@
-﻿using Jobs_Platform.Data.Entities;
-using Jobs_Platform.Dtos;
+﻿using DataLayer.Entities;
 using Jobs_Platform.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.WebSockets;
@@ -24,7 +23,7 @@ namespace Controllers
         }
 
         [HttpPost("add-job")]
-        public IActionResult Add(JobAddDto payload)
+        public IActionResult Add(Job payload)
         {
             var result = jobsService.Add(payload);
             if(result == null)

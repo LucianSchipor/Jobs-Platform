@@ -1,12 +1,12 @@
-﻿using Jobs_Platform.Data;
-using Jobs_Platform.Data.Entities;
+﻿using DataLayer;
+using DataLayer.Entities;
 
-namespace Jobs_Platform.DataLayer.Repositories
+namespace DataLayer.Repositories
 {
     public class JobsRepository : BaseRepository<Job>
     {
         public JobsRepository(AppDBContext dBContext)
-            :base(dBContext)
+            : base(dBContext)
         {
 
         }

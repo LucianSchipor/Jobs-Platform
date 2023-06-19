@@ -1,10 +1,10 @@
-﻿using Jobs_Platform.Data;
-using Jobs_Platform.DataLayer.Entities;
+﻿using DataLayer;
+using DataLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Jobs_Platform.DataLayer.Repositories
+namespace DataLayer.Repositories
 {
-    public class BaseRepository<T>where T : BaseEntity 
+    public class BaseRepository<T> where T : BaseEntity
     {
         protected readonly AppDBContext _dbContext;
         private readonly DbSet<T> _dbSet;
@@ -15,7 +15,8 @@ namespace Jobs_Platform.DataLayer.Repositories
             _dbSet = dBContext.Set<T>();
         }
 
-        public void Remove(T entity) {
+        public void Remove(T entity)
+        {
             _dbSet.Remove(entity);
         }
         public void Insert(T entity)
@@ -38,8 +39,9 @@ namespace Jobs_Platform.DataLayer.Repositories
         {
             return _dbSet.AsQueryable<T>();
         }
-        public bool Any(Func<T, bool> expression) {
-        return GetRecords().Any(expression);
+        public bool Any(Func<T, bool> expression)
+        {
+            return GetRecords().Any(expression);
         }
     }
 }

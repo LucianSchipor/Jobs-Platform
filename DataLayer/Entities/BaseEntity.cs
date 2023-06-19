@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
-namespace Jobs_Platform.DataLayer.Entities
+namespace DataLayer.Entities
 {
     public class BaseEntity
     {
         [Key]
+        [JsonIgnore]
         public int Id { get; set; }
     }
 }

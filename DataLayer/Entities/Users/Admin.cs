@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jobs_Platform.Data.Entities.Users
+namespace DataLayer.Entities.Users
 {
     internal class Admin
     {

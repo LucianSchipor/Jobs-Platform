@@ -1,6 +1,6 @@
-﻿using Jobs_Platform.Data;
-using Jobs_Platform.DataLayer;
-using Jobs_Platform.DataLayer.Repositories;
+﻿
+using DataLayer;
+using DataLayer.Repositories;
 using Jobs_Platform.Services;
 
 namespace Jobs_Platform.Settings

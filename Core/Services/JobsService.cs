@@ -1,6 +1,6 @@
-﻿using Jobs_Platform.Data.Entities;
-using Jobs_Platform.DataLayer;
-using Jobs_Platform.Dtos;
+﻿
+using DataLayer;
+using DataLayer.Entities;
 
 namespace Jobs_Platform.Services
 {
@@ -19,7 +19,7 @@ namespace Jobs_Platform.Services
             return jobs;
         }
 
-        public JobAddDto Add(JobAddDto payload)
+        public Job Add(Job payload)
         {
             if(payload == null) { return null; }
 
@@ -28,6 +28,8 @@ namespace Jobs_Platform.Services
                 name = payload.name,
                 description = payload.description,
                 salary = payload.salary,
+                location = payload.location,
+                industry = payload.industry,
             };
             unitOfWork.Jobs.Insert(newJob);
             unitOfWork.SaveChanges();

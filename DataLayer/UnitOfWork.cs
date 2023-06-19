@@ -1,8 +1,7 @@
-﻿using Jobs_Platform.Data;
-using Jobs_Platform.DataLayer.Repositories;
+﻿using DataLayer.Repositories;
 using System;
 
-namespace Jobs_Platform.DataLayer
+namespace DataLayer
 {
     public class UnitOfWork
     {
