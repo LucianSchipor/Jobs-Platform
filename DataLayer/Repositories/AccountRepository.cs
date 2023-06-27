@@ -1,0 +1,39 @@
+﻿using DataLayer.Entities.Users;
+using Microsoft.Identity.Client;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DataLayer.Repositories
+{
+    public class AccountRepository : BaseRepository<Account>
+    {
+        public AccountRepository(AppDBContext dBContext) 
+            :base(dBContext)
+        {
+            
+        }
+
+        public List<Account> GetAccounts()
+        {
+            var accounts = GetRecords().Select(r => new Account()
+            {
+                FirstName = r.FirstName,
+                LastName = r.LastName,
+                Username = r.Username,
+                Email = r.Email,
+                PasswordHash = r.PasswordHash,
+                Role = r.Role,
+            }
+            ).ToList();
+            return accounts;
+        }
+        public Account GetAccountByEmail(string Email)
+        {
+            var accounts = GetRecords().Where(r => r.Email == Email).FirstOrDefault();
+            return accounts;
+        }
+    }
+}

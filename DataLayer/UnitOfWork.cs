@@ -6,6 +6,8 @@ namespace DataLayer
     public class UnitOfWork
     {
         public JobsRepository Jobs { get; set; }
+        public AccountRepository Accounts { get; set; }
+
         private readonly AppDBContext _dbContext;
 
         public UnitOfWork(AppDBContext dBContext, JobsRepository jobsRepository)

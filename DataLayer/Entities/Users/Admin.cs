@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entities.Users
 {
-    internal class Admin
+    public class Admin: Account
     {
+        public Admin()         
+        :base()
+        { 
+            this.Role = Enums.Role.Admin;
+        }
     }
 }

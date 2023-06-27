@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer.Entities.Users
+namespace DataLayer.Entities.Enums
 {
-    public class Viewer
+    public enum RequirementsEnum
     {
-
-        public Viewer() { }
+        NONE,
+        HIGHSCHOOL,
+        COLLEGE,
+        MASTER,
     }
 }
