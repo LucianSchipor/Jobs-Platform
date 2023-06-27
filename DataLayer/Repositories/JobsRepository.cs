@@ -20,5 +20,12 @@ namespace DataLayer.Repositories
                 salary = r.salary,
             }).ToList();
         }
+
+        public Job GetJobByID(int id)
+        {
+            var result = GetRecords().Where(r => r.Id == id).FirstOrDefault();
+
+            return result;
+        }
     }
 }

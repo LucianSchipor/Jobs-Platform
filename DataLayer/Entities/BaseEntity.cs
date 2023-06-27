@@ -6,7 +6,6 @@ namespace DataLayer.Entities
     public class BaseEntity
     {
         [Key]
-        [JsonIgnore]
         public int Id { get; set; }
     }
 }

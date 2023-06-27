@@ -19,7 +19,12 @@ namespace Jobs_Platform.Services
             return jobs;
         }
 
-        public Job Add(Job payload)
+        public Job GetJobByID(int id)
+        {
+            return unitOfWork.Jobs.GetJobByID(id);
+        }
+
+        public Job AddJob(Job payload)
         {
             if(payload == null) { return null; }
 
