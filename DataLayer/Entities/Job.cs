@@ -16,23 +16,23 @@ namespace DataLayer.Entities
         public string description { get; set; }
 
         [Required]
-        public int salary { get; set; }
+        public SalaryEnum salary { get; set; }
 
         private JobType type { get; set; }
         [Required]
         public string location { get; set; }
-        public string industry { get; set; }
-        public string requirements { get; set; }
+        public IndustryEnum industry { get; set; }
+        public RequirementsEnum requirements { get; set; }
 
         public Job()
             : base()
         {
             name = string.Empty;
             description = string.Empty;
-            salary = 0;
+            salary = SalaryEnum.NONE;
             location = string.Empty;
-            industry = string.Empty;
-            requirements = string.Empty;
+            industry = IndustryEnum.NONE;
+            requirements = RequirementsEnum.NONE;
             type = JobType.SEASONAL;
         }
     }

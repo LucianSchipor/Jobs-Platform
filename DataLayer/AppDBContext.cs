@@ -1,4 +1,5 @@
 ﻿using DataLayer.Entities;
+using DataLayer.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
@@ -19,7 +20,17 @@ namespace DataLayer
                 .LogTo(Console.WriteLine);
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Applier>().ToTable("Appliers");
+            modelBuilder.Entity<Account>().ToTable("Accounts");
+        }
+
         public DbSet<Job> Jobs { get; set; } = null!;
+        public DbSet<Account> Accounts{ get; set; } = null!;
+
+        public DbSet<Applier> Appliers { get; set; } = null!;
+
 
     }
 }
