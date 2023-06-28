@@ -6,7 +6,7 @@ using System.Net.WebSockets;
 namespace Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/jobs")]
     public class JobsController : ControllerBase
     {
         private readonly JobsService jobsService;

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace DataLayer.Repositories
 {
     public class AccountRepository : BaseRepository<Account>
@@ -34,6 +35,12 @@ namespace DataLayer.Repositories
         {
             var accounts = GetRecords().Where(r => r.Email == Email).FirstOrDefault();
             return accounts;
+        }
+
+        public void AddAccount(Account account)
+        {
+            _dbContext.Accounts.Add(account);
+            _dbContext.SaveChanges();
         }
     }
 }

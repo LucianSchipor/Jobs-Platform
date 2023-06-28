@@ -10,10 +10,11 @@ namespace DataLayer
 
         private readonly AppDBContext _dbContext;
 
-        public UnitOfWork(AppDBContext dBContext, JobsRepository jobsRepository)
+        public UnitOfWork(AppDBContext dBContext, JobsRepository jobsRepository, AccountRepository accountRepository)
         {
             _dbContext = dBContext;
             Jobs = jobsRepository;
+            Accounts = accountRepository;
         }
 
         public void SaveChanges()

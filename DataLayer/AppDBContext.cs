@@ -22,15 +22,10 @@ namespace DataLayer
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Applier>().ToTable("Appliers");
-            modelBuilder.Entity<Account>().ToTable("Accounts");
         }
 
         public DbSet<Job> Jobs { get; set; } = null!;
         public DbSet<Account> Accounts{ get; set; } = null!;
-
-        public DbSet<Applier> Appliers { get; set; } = null!;
-
 
     }
 }

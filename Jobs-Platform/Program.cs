@@ -49,7 +49,6 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 
-
 Dependencies.Inject(builder);
 var app = builder.Build();
 

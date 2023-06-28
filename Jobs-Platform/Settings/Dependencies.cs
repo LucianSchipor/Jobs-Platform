@@ -1,33 +1,41 @@
 ﻿
+using Core.Services;
 using DataLayer;
 using DataLayer.Repositories;
 using Jobs_Platform.Services;
 
 namespace Jobs_Platform.Settings
 {
-        public static class Dependencies
+    public static class Dependencies
+    {
+
+        public static void Inject(WebApplicationBuilder applicationBuilder)
         {
+            applicationBuilder.Services.AddControllers();
+            applicationBuilder.Services.AddSwaggerGen();
 
-            public static void Inject(WebApplicationBuilder applicationBuilder)
-            {
-                applicationBuilder.Services.AddControllers();
-                applicationBuilder.Services.AddSwaggerGen();
+            applicationBuilder.Services.AddDbContext<AppDBContext>();
 
-                applicationBuilder.Services.AddDbContext<AppDBContext>();
+            AddRepositories(applicationBuilder.Services);
+            AddServices(applicationBuilder.Services);
+        }
 
-                AddRepositories(applicationBuilder.Services);
-                AddServices(applicationBuilder.Services);
-            }
+        private static void AddServices(IServiceCollection services)
+        {
+            services.AddScoped<JobsService>();
+            services.AddScoped<AccountService>();
+            services.AddScoped<AuthenticationService>();
 
-            private static void AddServices(IServiceCollection services)
-            {
-                services.AddScoped<JobsService>();
-            }
 
-            private static void AddRepositories(IServiceCollection services)
-            {
-                services.AddScoped<JobsRepository>();
-                services.AddScoped<UnitOfWork>();
-            }
+
+
+        }
+
+        private static void AddRepositories(IServiceCollection services)
+        {
+            services.AddScoped<JobsRepository>();
+            services.AddScoped<AccountRepository>();
+            services.AddScoped<UnitOfWork>();
+        }
     }
 }

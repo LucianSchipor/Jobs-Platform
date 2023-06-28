@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobsPlatform.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20230627125435_SecondMigration")]
-    partial class SecondMigration
+    [Migration("20230628104806_First-Migration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,9 +70,18 @@ namespace JobsPlatform.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Experience")
+                        .HasColumnType("int");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Industry")
+                        .HasColumnType("int");
+
+                    b.Property<int>("JobType")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -81,6 +90,9 @@ namespace JobsPlatform.Migrations
                     b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Requirements")
+                        .HasColumnType("int");
 
                     b.Property<int>("Role")
                         .HasColumnType("int");
@@ -91,44 +103,7 @@ namespace JobsPlatform.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Accounts", (string)null);
-
-                    b.UseTptMappingStrategy();
-                });
-
-            modelBuilder.Entity("DataLayer.Entities.Users.Applier", b =>
-                {
-                    b.HasBaseType("DataLayer.Entities.Users.Account");
-
-                    b.Property<int>("Accountd_ID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("experience")
-                        .HasColumnType("int");
-
-                    b.Property<int>("industry")
-                        .HasColumnType("int");
-
-                    b.Property<string>("location")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("requirements")
-                        .HasColumnType("int");
-
-                    b.Property<int>("salary")
-                        .HasColumnType("int");
-
-                    b.ToTable("Appliers", (string)null);
-                });
-
-            modelBuilder.Entity("DataLayer.Entities.Users.Applier", b =>
-                {
-                    b.HasOne("DataLayer.Entities.Users.Account", null)
-                        .WithOne()
-                        .HasForeignKey("DataLayer.Entities.Users.Applier", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.ToTable("Accounts");
                 });
 #pragma warning restore 612, 618
         }
