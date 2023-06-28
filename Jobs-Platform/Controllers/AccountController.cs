@@ -45,7 +45,7 @@ namespace Jobs_Platform.Controllers
         [AllowAnonymous]
         public IActionResult RegisterAsApplier(RegisterDto payload)
         {
-            var result = _accountService.Register(payload, "Employer");
+            var result = _accountService.Register(payload, "Applier");
             if (result != false)
             {
                 return Ok("Account has been created.");
