@@ -13,5 +13,15 @@ namespace Core.Dtos
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+
+        public RegisterDto()
+        {
+            Username = string.Empty;
+            PasswordHash = string.Empty;
+            Email = string.Empty;
+            FirstName = string.Empty;
+            LastName = string.Empty;
+        }
     }
 }

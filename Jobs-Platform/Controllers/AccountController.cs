@@ -29,6 +29,21 @@ namespace Jobs_Platform.Controllers
             return BadRequest("Account cannot be created");
         }
 
+        [HttpPost("login")]
+        [AllowAnonymous]
+        public IActionResult Login(LoginDto payload) { 
+
+           string jwtToken = _accountService.ValidateCredentials(payload);
+            if (jwtToken != null)
+            {
+                return Ok(new {token = jwtToken});
+            }
+            else
+            {
+                return Unauthorized();
+            }
+        }
+
         [HttpGet("/get-accounts")]
         public IActionResult GetAccounts()
         {

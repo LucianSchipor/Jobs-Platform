@@ -1,6 +1,7 @@
 ﻿using Core.Dtos;
 using DataLayer;
 using DataLayer.Entities;
+using DataLayer.Entities.Enums;
 using DataLayer.Entities.Users;
 using System;
 using System.Collections.Generic;
@@ -70,7 +71,40 @@ namespace Core.Services
             };
             unitOfWork.Accounts.AddAccount(newAccount);
             return true;
+        }
 
+        public string ValidateCredentials(LoginDto payload)
+        {
+            return CredidentialsValidator(payload, Role.User);
+        }
+
+        public string ValidateAdminCredidentials (LoginDto payload)
+        {
+            return CredidentialsValidator(payload, Role.Admin);
+        }
+        public string CredidentialsValidator(LoginDto payload, Role loginRole)
+        {
+            if (payload == null) { return null; }
+
+            Account accountFromDb = unitOfWork.Accounts.GetAccountByEmail(payload.Email);
+            if (accountFromDb == null)
+            {
+                return null;
+            }
+
+            bool passwordIsOk = authenticationService.VerifyHashedPassword(accountFromDb.PasswordHash, payload.Password);
+            if (!passwordIsOk)
+            {
+                return null;
+            }
+
+            if (accountFromDb.Role.CompareTo(loginRole) < 0)
+            {
+                return null;
+            }
+
+            string accountRole = accountFromDb.Role.ToString();
+            return authenticationService.GetToken(accountFromDb, accountRole);
+        }
     }
-}
 }
