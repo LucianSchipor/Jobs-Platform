@@ -9,6 +9,7 @@ namespace Jobs_Platform.Controllers
 
     [ApiController]
     [Route("api/accounts")]
+    [Authorize]
     public class AccountController: ControllerBase
     {
         private readonly AccountService _accountService;
@@ -29,6 +30,13 @@ namespace Jobs_Platform.Controllers
             return BadRequest("Account cannot be created");
         }
 
+        [HttpPost("create-admin")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult CreateAdmin(RegisterDto payload)
+        {
+          return Ok( _accountService.CreateAdmin(payload));
+        }
+
         [HttpPost("login")]
         [AllowAnonymous]
         public IActionResult Login(LoginDto payload) { 
@@ -44,7 +52,21 @@ namespace Jobs_Platform.Controllers
             }
         }
 
-        [HttpGet("/get-accounts")]
+        [HttpPost("login-admin")]
+        [AllowAnonymous]
+
+        public IActionResult LoginAsAdmin(LoginDto payload) 
+        {
+            string jwtToken = _accountService.ValidateAdminCredidentials(payload);
+            if(jwtToken != null)
+            {
+                return Ok(new { token = jwtToken });
+            }
+            return Unauthorized();
+        }
+
+        [HttpGet("get-accounts")]
+        [Authorize(Roles ="Admin")]
         public IActionResult GetAccounts()
         {
             var result = _accountService.GetAccounts();

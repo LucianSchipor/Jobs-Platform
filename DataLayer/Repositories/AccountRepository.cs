@@ -23,7 +23,6 @@ namespace DataLayer.Repositories
             {
                 FirstName = r.FirstName,
                 LastName = r.LastName,
-                Username = r.Username,
                 Email = r.Email,
                 PasswordHash = r.PasswordHash,
                 Role = r.Role,

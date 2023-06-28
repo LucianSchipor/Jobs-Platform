@@ -42,6 +42,22 @@ namespace Core.Services
             return unitOfWork.Accounts.GetAccountByEmail(email);
         }
 
+
+        public bool CreateAdmin(RegisterDto payload)
+        {
+
+            payload.PasswordHash = authenticationService.HashPassword(payload.PasswordHash);
+            Account admin = new Account
+            {
+                FirstName = payload.FirstName,
+                LastName = payload.LastName,
+                PasswordHash = payload.PasswordHash,
+                Email = payload.Email,
+                Role = Role.Admin,
+            };
+            unitOfWork.Accounts.AddAccount(admin);
+            return true;
+        }
         public bool Register(RegisterDto payload)
         {
             if (payload == null) { return false; }

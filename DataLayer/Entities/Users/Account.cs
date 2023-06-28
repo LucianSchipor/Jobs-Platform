@@ -11,7 +11,6 @@ namespace DataLayer.Entities.Users
 {
     public class Account : BaseEntity
     {
-        public string Username { get; set; }
         public string PasswordHash { get; set; }
         public string Email { get; set; }   
         public string FirstName { get; set; }
@@ -25,7 +24,6 @@ namespace DataLayer.Entities.Users
 
         public Account() 
         {
-            Username = "New Account";
             PasswordHash = "New Account";
             Email  = "New Account";
             FirstName = "New Account";
