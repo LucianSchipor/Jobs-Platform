@@ -9,7 +9,8 @@ namespace DataLayer.Entities.Enums
     public enum Role
     {
         None,
-        User,
-        Admin
+        Applier,
+        Employer,
+        Admin,
     }
 }

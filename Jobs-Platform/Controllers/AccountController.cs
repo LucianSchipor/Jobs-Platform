@@ -18,12 +18,35 @@ namespace Jobs_Platform.Controllers
             this._accountService = accountService;
         }
 
-        [HttpPost("register")]
+        /// <summary>
+        /// Without authentication
+        /// You will register with Employer role. You will have acces to create jobs, but not to see jobs.
+        /// </summary>
+        /// <param name="payload"></param>
+        /// <returns></returns>
+        [HttpPost("register-as-employer")]
         [AllowAnonymous]
-        public IActionResult Register(RegisterDto payload)
+        public IActionResult RegisterAsEmployer(RegisterDto payload)
         {
-            var result = _accountService.Register(payload);
+            var result = _accountService.Register(payload, "Employer");
             if(result != false)
+            {
+                return Ok("Account has been created.");
+            }
+            return BadRequest("Account cannot be created");
+        }
+
+        /// <summary>
+        /// You will register with Applier role. You wil have acces to see jobs, but not to create jobs.
+        /// </summary>
+        /// <param name="payload"></param>
+        /// <returns></returns>
+        [HttpPost("register-as-applier")]
+        [AllowAnonymous]
+        public IActionResult RegisterAsApplier(RegisterDto payload)
+        {
+            var result = _accountService.Register(payload, "Employer");
+            if (result != false)
             {
                 return Ok("Account has been created.");
             }
@@ -37,6 +60,12 @@ namespace Jobs_Platform.Controllers
           return Ok( _accountService.CreateAdmin(payload));
         }
 
+        /// <summary>
+        /// Without authentication
+        /// You have to enter account's email and password
+        /// </summary>
+        /// <param name="payload"></param>
+        /// <returns></returns>
         [HttpPost("login")]
         [AllowAnonymous]
         public IActionResult Login(LoginDto payload) { 
@@ -52,6 +81,11 @@ namespace Jobs_Platform.Controllers
             }
         }
 
+        /// <summary>
+        /// Requires authentication with an ADMIN account
+        /// </summary>
+        /// <param name="payload"></param>
+        /// <returns></returns>
         [HttpPost("login-admin")]
         [AllowAnonymous]
 
@@ -65,6 +99,10 @@ namespace Jobs_Platform.Controllers
             return Unauthorized();
         }
 
+        /// <summary>
+        /// Required authentication with an ADMIN account 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("get-accounts")]
         [Authorize(Roles ="Admin")]
         public IActionResult GetAccounts()

@@ -58,7 +58,7 @@ namespace Core.Services
             unitOfWork.Accounts.AddAccount(admin);
             return true;
         }
-        public bool Register(RegisterDto payload)
+        public bool Register(RegisterDto payload, string Role)
         {
             if (payload == null) { return false; }
 
@@ -77,21 +77,32 @@ namespace Core.Services
             }
 
             payload.PasswordHash = authenticationService.HashPassword(payload.PasswordHash);
+
+            Role roleForNewUser = 0;
+            if (Role.Equals("Applier"))
+            {
+                roleForNewUser = DataLayer.Entities.Enums.Role.Applier;
+            }
+            else
+            {
+                roleForNewUser = DataLayer.Entities.Enums.Role.Employer;
+            }
             Account newAccount = new Account
             {
                 FirstName = payload.FirstName,
                 Email = payload.Email,
                 LastName = payload.LastName,
                 PasswordHash = payload.PasswordHash,
-                Role = DataLayer.Entities.Enums.Role.User,
-            };
+                Role = roleForNewUser,
+               
+        };
             unitOfWork.Accounts.AddAccount(newAccount);
             return true;
         }
 
         public string ValidateCredentials(LoginDto payload)
         {
-            return CredidentialsValidator(payload, Role.User);
+            return CredidentialsValidator(payload, Role.Applier);
         }
 
         public string ValidateAdminCredidentials (LoginDto payload)

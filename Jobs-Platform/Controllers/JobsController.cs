@@ -1,5 +1,6 @@
 ﻿using DataLayer.Entities;
 using Jobs_Platform.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.WebSockets;
 
@@ -7,6 +8,7 @@ namespace Controllers
 {
     [ApiController]
     [Route("api/jobs")]
+    [Authorize]
     public class JobsController : ControllerBase
     {
         private readonly JobsService jobsService;
@@ -15,7 +17,13 @@ namespace Controllers
            this.jobsService = jobsService;
         }
 
+        /// <summary>
+        /// You wil get all jobs from platform
+        /// Requires an ADMIN account.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
+        [Authorize(Roles ="Admin")]
         public ActionResult<List<Job>> GetJobs()
         {
             var result = jobsService.GetJobs();
