@@ -9,7 +9,6 @@ namespace Jobs_Platform.Controllers
 
     [ApiController]
     [Route("api/accounts")]
-    [Authorize]
     public class AccountController: ControllerBase
     {
         private readonly AccountService _accountService;
@@ -54,7 +53,6 @@ namespace Jobs_Platform.Controllers
         }
 
         [HttpPost("create-admin")]
-        [Authorize(Roles = "Admin")]
         public IActionResult CreateAdmin(RegisterDto payload)
         {
           return Ok( _accountService.CreateAdmin(payload));
