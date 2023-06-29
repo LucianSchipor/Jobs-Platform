@@ -1,4 +1,4 @@
-﻿using Core.Dtos;
+using Core.Dtos;
 using Core.Services;
 using DataLayer.Entities.Users;
 using Microsoft.AspNetCore.Authorization;
@@ -14,7 +14,7 @@ namespace Jobs_Platform.Controllers
         private readonly AccountService _accountService;
         public AccountController(AccountService accountService)
         {
-            this._accountService = accountService;
+            _accountService = accountService;
         }
 
         /// <summary>
@@ -28,11 +28,7 @@ namespace Jobs_Platform.Controllers
         public IActionResult RegisterAsEmployer(RegisterDto payload)
         {
             var result = _accountService.Register(payload, "Employer");
-            if(result != false)
-            {
-                return Ok("Account has been created.");
-            }
-            return BadRequest("Account cannot be created");
+            return result != false ? Ok("Account has been created.") : BadRequest("Account cannot be created");
         }
 
         /// <summary>
@@ -45,11 +41,8 @@ namespace Jobs_Platform.Controllers
         public IActionResult RegisterAsApplier(RegisterDto payload)
         {
             var result = _accountService.Register(payload, "Applier");
-            if (result != false)
-            {
-                return Ok("Account has been created.");
-            }
-            return BadRequest("Account cannot be created");
+
+            return result != false ? Ok("Account has been created.") : BadRequest("Account cannot be created");
         }
 
         [HttpPost("create-admin")]
@@ -73,10 +66,8 @@ namespace Jobs_Platform.Controllers
             {
                 return Ok(new {token = jwtToken});
             }
-            else
-            {
-                return Unauthorized();
-            }
+                return jwtToken != null ? Ok(new { token = jwtToken }):  Unauthorized();
+            
         }
 
         /// <summary>
@@ -90,11 +81,8 @@ namespace Jobs_Platform.Controllers
         public IActionResult LoginAsAdmin(LoginDto payload) 
         {
             string jwtToken = _accountService.ValidateAdminCredidentials(payload);
-            if(jwtToken != null)
-            {
-                return Ok(new { token = jwtToken });
-            }
-            return Unauthorized();
+
+            return jwtToken != null ? Ok(new { token = jwtToken }) : Unauthorized();
         }
 
         /// <summary>
@@ -106,11 +94,16 @@ namespace Jobs_Platform.Controllers
         public IActionResult GetAccounts()
         {
             var result = _accountService.GetAccounts();
-            if(result != null)
-            {
-                return Ok(result);
-            }
-            return BadRequest();
+
+            return result != null ? Ok(result) : BadRequest();
+        }
+        [HttpGet("get-admin-accounts")]
+        [Authorize(Roles="Admin")]
+        public IActionResult GetAdminAccounts() 
+        {
+            var admins= _accountService.GetAdminAccounts();
+
+            return admins!=null ? Ok(admins) : BadRequest();
         }
 
     }
