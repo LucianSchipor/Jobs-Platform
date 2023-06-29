@@ -16,7 +16,12 @@ namespace DataLayer
             Jobs = jobsRepository;
             Accounts = accountRepository;
         }
-
+          public void Add(ref Job job)
+        {
+            Jobs.Add(job);
+            _dbContext.Jobs.Add(job);
+            _dbContext.SaveChanges();
+        }
         public void SaveChanges()
         {
             try
