@@ -15,11 +15,17 @@ namespace DataLayer
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=LUCIAN;Initial Catalog=Jobs-Platform;User ID=Lucian;Password=Lucian;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False", b => b.MigrationsAssembly("Jobs-Platform"));
-            optionsBuilder
-                .LogTo(Console.WriteLine);
+            try
+            {
+                optionsBuilder.UseSqlServer(@"Data Source=LUCIAN;Initial Catalog=Jobs-Platform;User ID=Lucian;Password=Lucian;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False", b => b.MigrationsAssembly("Jobs-Platform"));
+                optionsBuilder
+                    .LogTo(Console.WriteLine);
+            }
+            catch (DbException db)
+            {
+                Console.WriteLine(db);
+            }
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
         }

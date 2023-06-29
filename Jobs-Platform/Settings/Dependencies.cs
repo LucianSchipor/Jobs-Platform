@@ -9,15 +9,23 @@ namespace Jobs_Platform.Settings
     public static class Dependencies
     {
 
-        public static void Inject(WebApplicationBuilder applicationBuilder)
+       public static void Inject(WebApplicationBuilder applicationBuilder)
         {
-            applicationBuilder.Services.AddControllers();
-            applicationBuilder.Services.AddSwaggerGen();
+            try
+            {
 
-            applicationBuilder.Services.AddDbContext<AppDBContext>();
+                applicationBuilder.Services.AddControllers();
+                applicationBuilder.Services.AddSwaggerGen();
 
-            AddRepositories(applicationBuilder.Services);
-            AddServices(applicationBuilder.Services);
+                applicationBuilder.Services.AddDbContext<AppDBContext>();
+
+                AddRepositories(applicationBuilder.Services);
+                AddServices(applicationBuilder.Services);
+            }
+            catch(DbException c)
+            {
+                Console.WriteLine(c);
+            }
         }
 
         private static void AddServices(IServiceCollection services)
