@@ -65,29 +65,64 @@ namespace Controllers
         [AllowAnonymous]
         public IActionResult GetPracticeJobs() 
         {
-            var seasonals = jobsService.GetSeasonalJobs();
-            return seasonals != null ? Ok(seasonals) : BadRequest();
+            var practical = jobsService.GetPracticeJobs();
+            return practical != null ? Ok(practical) : BadRequest();
         }
         [HttpGet("internship-jobs")]
         [AllowAnonymous]
         public IActionResult GetInternshiplJobs() 
         {
-            var seasonals = jobsService.GetSeasonalJobs();
-            return seasonals != null ? Ok(seasonals) : BadRequest();
+            var internships = jobsService.GetInternshiplJobs;
+            return internships != null ? Ok(internships) : BadRequest();
         }
         [HttpGet("part-time-jobs")]
         [AllowAnonymous]
         public IActionResult GetPartTimeJobs() 
         {
-            var seasonals = jobsService.GetSeasonalJobs();
-            return seasonals != null ? Ok(seasonals) : BadRequest();
+            var partTime = jobsService.GetPartTimeJobs();
+            return partTime != null ? Ok(partTime) : BadRequest();
         }
         [HttpGet("full-time-jobs")]
         [AllowAnonymous]
         public IActionResult GetFullTimeJobs() 
         {
-            var seasonals = jobsService.GetSeasonalJobs();
-            return seasonals != null ? Ok(seasonals) : BadRequest();
+            var fullTime = jobsService.GetFullTimeJobs();
+            return fullTime != null ? Ok(fullTime) : BadRequest();
+        }
+        [HttpGet("it-jobs")]
+        [AllowAnonymous]
+        public IActionResult GetITJobs() 
+        {
+            var itJobs = jobsService.GetITJobs();
+            return itJobs != null ? Ok(itJobs) : BadRequest();
+        }
+        [HttpGet("agriculture-jobs")]
+        [AllowAnonymous]
+        public IActionResult GetAgricultureJobs() 
+        {
+            var agriculture = jobsService.GetAgricultureJobs();
+            return agriculture != null ? Ok(agriculture) : BadRequest();
+        }
+        [HttpGet("economy-jobs")]
+        [AllowAnonymous]
+        public IActionResult GetEconomyJobs() 
+        {
+            var economy = jobsService.GetEconomyJobs();
+            return economy != null ? Ok(economy) : BadRequest();
+        }
+        [HttpGet("arhitecture-jobs")]
+        [AllowAnonymous]
+        public IActionResult GetArhitectureJobs() 
+        {
+            var arhitecture = jobsService.GetArhitectureJobs();
+            return arhitecture != null ? Ok(arhitecture) : BadRequest();
+        }
+        [HttpGet("healthcare-jobs")]
+        [AllowAnonymous]
+        public IActionResult GetHealthcareJobs() 
+        {
+            var healthcare = jobsService.GetHealtchcareJobs();
+            return healthcare != null ? Ok(healthcare) : BadRequest();
         }
     }
 }
