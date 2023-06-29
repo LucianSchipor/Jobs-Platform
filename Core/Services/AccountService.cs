@@ -36,7 +36,20 @@ namespace Core.Services
 
             return result;
         }
+         public List<ViewAccountDto> GetAdminAccounts()
+        {
+            var accounts = unitOfWork.Accounts.GetAccounts();
 
+            var result = accounts.Where(r => r.Role == Role.Admin).
+                Select(r => new ViewAccountDto
+            {
+                FristName = r.FirstName,
+                Email = r.Email,
+                Role = r.Role.ToString(),
+            }).ToList();
+
+            return result;
+        }
         public Account GetAccountByEmail(string email)
         {
             return unitOfWork.Accounts.GetAccountByEmail(email);
