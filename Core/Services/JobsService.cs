@@ -107,5 +107,70 @@ namespace Jobs_Platform.Services
             }
             return fullJobs;
         }
+        public List<Job> GetITJobs()
+        {
+            var jobs= GetJobs();
+            List<Job> itJobs = new();
+            foreach(Job job in jobs) 
+            {
+                if(job.industry==IndustryEnum.IT)
+                {
+                    itJobs.Add(job);
+                }
+            }
+            return itJobs;
+        }
+        public List<Job> GetAgricultureJobs()
+        {
+            var jobs= GetJobs();
+            List<Job> agricultureJobs = new();
+            foreach(Job job in jobs) 
+            {
+                if(job.industry==IndustryEnum.AGRICULTURE)
+                {
+                    agricultureJobs.Add(job);
+                }
+            }
+            return agricultureJobs;
+        }
+        public List<Job> GetEconomyJobs()
+        {
+            var jobs= GetJobs();
+            List<Job> economyJobs = new();
+            foreach(Job job in jobs) 
+            {
+                if(job.industry==IndustryEnum.ECONOMY)
+                {
+                    economyJobs.Add(job);
+                }
+            }
+            return economyJobs;
+        }
+        public List<Job> GetArhitectureJobs()
+        {
+            var jobs= GetJobs();
+            List<Job> arhitectureJobs = new();
+            foreach(Job job in jobs) 
+            {
+                if(job.industry==IndustryEnum.ARHITECTURE)
+                {
+                    arhitectureJobs.Add(job);
+                }
+            }
+            return arhitectureJobs;
+        }
+        public List<Job> GetHealtchcareJobs()
+        {
+            var jobs= GetJobs();
+            List<Job> healthcareJobs = new();
+            foreach(Job job in jobs) 
+            {
+                if(job.industry==IndustryEnum.HEALTHCARE)
+                {
+                    healthcareJobs.Add(job);
+                }
+            }
+            return healthcareJobs;
+        }
     }
 }
