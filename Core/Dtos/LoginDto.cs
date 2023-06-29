@@ -18,7 +18,7 @@ namespace Core.Dtos
         public LoginDto()
         {
             Email = string.Empty;
-            Password = string.Empty;
+            Password = string.Empty; 
         }
     }
 }

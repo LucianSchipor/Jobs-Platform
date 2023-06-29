@@ -16,10 +16,7 @@ namespace DataLayer.Entities.Users
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Role Role { get; set; }
-        public JobType JobType { get; set; }
-        public RequirementsEnum Requirements { get; set; }
-        public IndustryEnum Industry { get; set; }
-        public ExperienceEnum Experience { get; set; }
+        
 
 
         public Account() 

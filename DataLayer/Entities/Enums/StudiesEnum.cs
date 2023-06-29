@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entities.Enums
 {
-    public enum RequirementsEnum
+    public enum StudiesEnum
     {
         NONE,
         HIGHSCHOOL,

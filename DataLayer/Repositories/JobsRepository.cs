@@ -27,5 +27,11 @@ namespace DataLayer.Repositories
 
             return result;
         }
+
+        public void AddJob(Job job)
+        {
+            _dbContext.Jobs.Add(job);
+            _dbContext.SaveChanges();
+        }
     }
 }

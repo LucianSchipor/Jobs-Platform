@@ -1,40 +1,31 @@
 ﻿using DataLayer.Entities.Enums;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace DataLayer.Entities
+namespace Core.Dtos
 {
-    public class Job : BaseEntity
+    public class CreateJobDto
     {
-        [Required]
-        public string name { get; set; }
-        [Required]
         public string description { get; set; }
-
-        [Required]
         public SalaryEnum salary { get; set; }
-        public JobType type { get; set; }
-        [Required]
+        private JobType type { get; set; }
         public string location { get; set; }
         public IndustryEnum industry { get; set; }
-        
         public ExperienceEnum experience { get; set; }
 
-
-        public Job()
-            : base()
+        public CreateJobDto()
         {
-            name = string.Empty;
             description = string.Empty;
-            salary = SalaryEnum.NONE;
+            salary = 0;
             location = string.Empty;
-            industry = IndustryEnum.NONE;
-            type = JobType.SEASONAL;
+            type = 0;
+            industry = 0;
+            experience = 0;
         }
     }
 }
