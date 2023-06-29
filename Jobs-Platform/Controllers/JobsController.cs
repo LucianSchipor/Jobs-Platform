@@ -54,5 +54,40 @@ namespace Controllers
 
             return Ok(result);
         }
+        [HttpGet("seasonal-jobs")]
+        [AllowAnonymous]
+        public IActionResult GetSeasonalJobs() 
+        {
+            var seasonals = jobsService.GetSeasonalJobs();
+            return seasonals != null ? Ok(seasonals) : BadRequest();
+        }
+        [HttpGet("practice-jobs")]
+        [AllowAnonymous]
+        public IActionResult GetPracticeJobs() 
+        {
+            var seasonals = jobsService.GetSeasonalJobs();
+            return seasonals != null ? Ok(seasonals) : BadRequest();
+        }
+        [HttpGet("internship-jobs")]
+        [AllowAnonymous]
+        public IActionResult GetInternshiplJobs() 
+        {
+            var seasonals = jobsService.GetSeasonalJobs();
+            return seasonals != null ? Ok(seasonals) : BadRequest();
+        }
+        [HttpGet("part-time-jobs")]
+        [AllowAnonymous]
+        public IActionResult GetPartTimeJobs() 
+        {
+            var seasonals = jobsService.GetSeasonalJobs();
+            return seasonals != null ? Ok(seasonals) : BadRequest();
+        }
+        [HttpGet("full-time-jobs")]
+        [AllowAnonymous]
+        public IActionResult GetFullTimeJobs() 
+        {
+            var seasonals = jobsService.GetSeasonalJobs();
+            return seasonals != null ? Ok(seasonals) : BadRequest();
+        }
     }
 }
