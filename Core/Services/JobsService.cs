@@ -41,5 +41,71 @@ namespace Jobs_Platform.Services
 
             return payload;
         }
+        public List<Job> GetSeasonalJobs()
+        {
+            var jobs= GetJobs();
+            List<Job> seasonals = new();
+            foreach(Job job in jobs) 
+            {
+                if(job.type==JobType.SEASONAL)
+                {
+                    seasonals.Add(job);
+                }
+            }
+            return seasonals;
+        }
+        public List<Job> GetPracticeJobs()
+        {
+            var jobs = GetJobs();
+            List<Job> practical = new();
+            foreach (Job job in jobs)
+            {
+                if (job.type == JobType.PRACTICE)
+                {
+                    practical.Add(job);
+                }
+            }
+            return practical;
+        }
+        public List<Job> GetInternshiplJobs()
+        {
+            var jobs= GetJobs();
+            List<Job> internships = new();
+            foreach(Job job in jobs) 
+            {
+                if(job.type==JobType.INTERSHIP)
+                {
+                    internships.Add(job);
+                }
+            }
+            return internships;
+        }
+       
+        public List<Job> GetPartTimeJobs()
+        {
+            var jobs= GetJobs();
+            List<Job> miniJobs = new();
+            foreach(Job job in jobs) 
+            {
+                if(job.type==JobType.PART_TIME)
+                {
+                    miniJobs.Add(job);
+                }
+            }
+            return miniJobs;
+        }
+        public List<Job> GetFullTimeJobs()
+        {
+            var jobs= GetJobs();
+            List<Job> fullJobs = new();
+            foreach(Job job in jobs) 
+            {
+                if(job.type==JobType.FULL_TIME)
+                {
+                    fullJobs.Add(job);
+                }
+            }
+            return fullJobs;
+        }
     }
 }
