@@ -24,7 +24,7 @@ namespace DataLayer.Repositories
 
         public List<Application> GetJobApplications(int id)
         {
-            var result = GetRecords().Where(a => a.Id == id).ToList();
+            var result = GetRecords().Where(a => a.JobId == id).ToList();
             return result;
         }
     }

@@ -25,6 +25,7 @@ namespace Core.Services
 
             Application app = new Application
             {
+                Id = payload.Id,
                 JobId = payload.JobId,
                 Studies = payload.Studies,
                 Industry = payload.Industry,
