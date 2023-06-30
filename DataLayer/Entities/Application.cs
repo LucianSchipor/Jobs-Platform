@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DataLayer.Entities
@@ -21,13 +22,13 @@ namespace DataLayer.Entities
         }
 
         public int JobId { get; set; }
+        [JsonIgnore]
         public Job Job { get; set; }
         public StudiesEnum Studies { get; set; }
         public IndustryEnum Industry { get; set; }
         public ExperienceEnum Experience { get; set; }
         public string MessageForEmployer { get; set; }
         public string Email { get; set; }
-        public Account Account { get; set; }
     }
 
 

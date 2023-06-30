@@ -1,5 +1,6 @@
 ﻿using Core.Dtos;
 using DataLayer.Entities;
+using Jobs_Platform.Dtos;
 using Jobs_Platform.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors.Infrastructure;
@@ -21,14 +22,14 @@ namespace Controllers
 
         /// <summary>
         /// You wil get all jobs from platform
-        /// Requires an ADMIN account.
+        /// Requires an Admin or an Applier account.
         /// </summary>
         /// <returns></returns>
-        [HttpGet("get-all-jobs")]
+        [HttpGet("view-all-jobs")]
         [Authorize(Roles = "Admin, Applier")]
-        public ActionResult<List<Job>> GetJobs()
+        public ActionResult<List<ViewJobDto>> GetJobs()
         {
-            var result = jobsService.GetJobs();
+            var result = jobsService.ViewJobs();
             return Ok(result);
         }
 
@@ -45,8 +46,12 @@ namespace Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// You need an Applier or an Admin account. You get all jobs, and based on their ID, you create applications.
+        /// </summary>
+        /// <param name="payload"></param>
+        /// <returns></returns>
         [HttpPost("create-application")]
-        [Route("{jobId}")]
         [Authorize(Roles = "Admin, Applier")]
         public IActionResult CreateApplication(Application payload)
         {

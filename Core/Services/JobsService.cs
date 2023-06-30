@@ -3,6 +3,7 @@ using Core.Dtos;
 using DataLayer;
 using DataLayer.Entities;
 using DataLayer.Entities.Enums;
+using Jobs_Platform.Dtos;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection.Metadata.Ecma335;
 
@@ -19,8 +20,21 @@ namespace Jobs_Platform.Services
 
         public List<Job> GetJobs()
         {
-            var jobs = unitOfWork.Jobs.GetAll();
+            var jobs = unitOfWork.Jobs.GetAll().ToList();
             return jobs;
+        }
+
+        public List<ViewJobDto> ViewJobs()
+        {
+            var jobs = unitOfWork.Jobs.GetAll().Select(c => new ViewJobDto
+            {
+                Id = c.Id,
+                Description = c.description,
+                Salary = c.salary,
+            }).ToList();
+
+            return jobs;
+
         }
 
         public Job GetJobByID(int id)
