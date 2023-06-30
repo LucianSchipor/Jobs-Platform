@@ -2,6 +2,7 @@
 using Core.Dtos;
 using DataLayer;
 using DataLayer.Entities;
+using DataLayer.Entities.Enums;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection.Metadata.Ecma335;
 

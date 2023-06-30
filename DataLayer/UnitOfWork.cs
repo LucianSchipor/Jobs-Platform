@@ -1,4 +1,5 @@
-﻿using DataLayer.Repositories;
+﻿using DataLayer.Entities;
+using DataLayer.Repositories;
 using System;
 
 namespace DataLayer

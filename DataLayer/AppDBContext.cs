@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,8 @@ namespace DataLayer
 
         public DbSet<Job> Jobs { get; set; } = null!;
         public DbSet<Account> Accounts{ get; set; } = null!;
+
+        public DbSet<Application> Applications { get; set; } = null!;
 
     }
 }

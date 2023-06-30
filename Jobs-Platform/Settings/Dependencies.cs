@@ -3,6 +3,7 @@ using Core.Services;
 using DataLayer;
 using DataLayer.Repositories;
 using Jobs_Platform.Services;
+using System.Data.Common;
 
 namespace Jobs_Platform.Settings
 {
