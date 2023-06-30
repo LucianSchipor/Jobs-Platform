@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using DataLayer.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.Repositories
 {
@@ -34,6 +35,11 @@ namespace DataLayer.Repositories
             _dbContext.SaveChanges();
         }
 
+        public bool Delete(int id)
+        {
+            _dbContext.Jobs.Where(a => a.Id == id).ExecuteDelete();
+            return true;
+        }
        
     }
 }

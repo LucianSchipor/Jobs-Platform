@@ -46,6 +46,24 @@ namespace Controllers
             return Ok(result);
         }
 
+        [HttpDelete("delete-job")]
+        [Authorize(Roles ="Employer, Admin")]
+        public IActionResult Delete(int jobID, string Email)
+        {
+
+
+            var result = jobsService.Delete(jobID);
+            if(result == false)
+            {
+                return BadRequest("Job not found.");
+            }
+            else
+            {
+
+                return Ok("Job deleted.");
+            }
+        }
+
         [HttpGet("seasonal-jobs")]
         [AllowAnonymous]
         public IActionResult GetSeasonalJobs()

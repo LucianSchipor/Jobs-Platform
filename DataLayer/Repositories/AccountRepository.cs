@@ -1,4 +1,5 @@
 ﻿using DataLayer.Entities.Users;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,12 @@ namespace DataLayer.Repositories
         {
             _dbContext.Accounts.Add(account);
             _dbContext.SaveChanges();
+        }
+
+        public bool DeleteAccount(string email)
+        {
+            _dbContext.Accounts.Where(a => a.Email == email).ExecuteDelete();
+            return true;
         }
     }
 }

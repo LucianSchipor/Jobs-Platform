@@ -146,5 +146,11 @@ namespace Core.Services
             string accountRole = accountFromDb.Role.ToString();
             return authenticationService.GetToken(accountFromDb, accountRole);
         }
+
+        public bool Delete(string Email)
+        {
+            unitOfWork.Accounts.DeleteAccount(Email);
+            return true;
+        }
     }
 }

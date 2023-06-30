@@ -1,6 +1,7 @@
 using Core.Dtos;
 using Core.Services;
 using DataLayer.Entities.Users;
+using Jobs_Platform.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -106,6 +107,22 @@ namespace Jobs_Platform.Controllers
             return admins!=null ? Ok(admins) : BadRequest();
         }
 
+
+        [HttpDelete("delete-account")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(string Email)
+        {
+            var result = _accountService.Delete(Email);
+            if (result == false)
+            {
+                return BadRequest("Account not found.");
+            }
+            else
+            {
+
+                return Ok("Account deleted.");
+            }
+        }
     }
 
 

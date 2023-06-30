@@ -78,6 +78,11 @@ namespace Jobs_Platform.Services
 
             return BigList;
         }
+
+        public bool Delete(int jobId)
+        {
+            unitOfWork.Jobs.Delete(jobId); return true;
+        }
         public List<Job> GetSeasonalJobs()
         {
             var jobs= GetJobs();
