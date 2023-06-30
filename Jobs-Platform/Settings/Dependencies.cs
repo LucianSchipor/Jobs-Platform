@@ -25,7 +25,7 @@ namespace Jobs_Platform.Settings
             }
             catch(DbException c)
             {
-                Console.WriteLine(c);
+                Console.WriteLine(c.Message);
             }
         }
 
