@@ -32,7 +32,7 @@ namespace Jobs_Platform.Controllers
             var result = _applicationsService.CreateApplication(payload);
             if (result == null)
             {
-                return BadRequest("Application cannot be created.");
+                return BadRequest("You already applied for this job.");
             }
             return Ok(result);
         }

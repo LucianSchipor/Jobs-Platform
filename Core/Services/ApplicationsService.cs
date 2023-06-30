@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using DataLayer.Entities;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,9 @@ namespace Core.Services
         {
             if (payload == null) { return null; }
 
+            if (!_unitOfWork.Applications.Employer_GetApps(payload.JobId).Where(e => e.Email == payload.Email).IsNullOrEmpty())
+                return null;
+
             Application app = new Application
             {
                 Id = payload.Id,
@@ -33,7 +37,7 @@ namespace Core.Services
                 MessageForEmployer = payload.MessageForEmployer,
                 Email = payload.Email,
             };
-
+            
             _unitOfWork.Applications.AddAplication(app);
 
             return app;
