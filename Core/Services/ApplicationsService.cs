@@ -39,9 +39,15 @@ namespace Core.Services
             return app;
         }
 
-        public List<Application> ViewJobApplications(int jobId)
+        public List<Application> Employer_ViewJobApplications(int jobId)
         {
-            var result = _unitOfWork.Applications.GetJobApplications(jobId);
+            var result = _unitOfWork.Applications.Employer_GetApps(jobId);
+            return result;
+        }
+
+        public List<Application> Applier_ViewJobApplications(string Email)
+        {
+            var result = _unitOfWork.Applications.Applier_GetApps(Email).ToList();
             return result;
         }
     }

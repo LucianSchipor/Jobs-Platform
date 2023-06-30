@@ -16,15 +16,14 @@ namespace DataLayer.Entities
         public Application()
             : base()
         {
-            this.Application_id = base.Id;
+            this.Id = base.Id;
             this.Studies = 0;
             this.Industry = 0;
             this.Experience = 0;
             MessageForEmployer = string.Empty;
         }
 
-        [NotMapped]
-        public int Application_id { get; set; }
+        public int Id { get; set; }
         public int JobId { get; set; }
         public StudiesEnum Studies { get; set; }
         public IndustryEnum Industry { get; set; }

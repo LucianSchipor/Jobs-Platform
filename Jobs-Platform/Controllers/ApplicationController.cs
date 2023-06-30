@@ -36,15 +36,27 @@ namespace Jobs_Platform.Controllers
             }
             return Ok(result);
         }
-
-        [HttpGet("view-applications")]
+        /// <summary>
+        /// You need an Employer account. You will see, based on Job id, all current apps.
+        /// </summary>
+        /// <param name="Job_Id"></param>
+        /// <returns></returns>
+        [HttpGet("employer-view-applications")]
         [Authorize(Roles = "Admin, Employer")]
 
-        public IActionResult GetApplications(int Job_Id)
+        public IActionResult GetApplicationsForEmployer(int Job_Id)
         {
-            var result = _applicationsService.ViewJobApplications(Job_Id);
+            var result = _applicationsService.Employer_ViewJobApplications(Job_Id);
             return Ok(result);
         }
 
+       
+        [HttpGet("applier-view-applications")]
+        [Authorize(Roles ="Admin, Applier")]
+        public IActionResult GetApplicationsForApplier(string Email)
+        {
+            var result = _applicationsService.Applier_ViewJobApplications(Email);
+            return Ok(result);
+        }
     }
 }

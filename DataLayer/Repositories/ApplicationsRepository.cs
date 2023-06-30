@@ -22,9 +22,15 @@ namespace DataLayer.Repositories
             _dbContext.SaveChanges();
         }
 
-        public List<Application> GetJobApplications(int id)
+        public List<Application> Employer_GetApps(int id)
         {
             var result = GetRecords().Where(a => a.JobId == id).ToList();
+            return result;
+        }
+
+        public List<Application> Applier_GetApps(string email)
+        {
+            var result = GetRecords().Where(a => a.Email == email).ToList();
             return result;
         }
     }
