@@ -10,7 +10,6 @@ namespace Controllers
 {
     [ApiController]
     [Route("api/jobs")]
-    [Authorize]
     public class JobsController : ControllerBase
     {
         private readonly JobsService jobsService;
@@ -32,19 +31,7 @@ namespace Controllers
             return Ok(result);
         }
 
-        [HttpGet]
-        [Route("{id}")]
-        public ActionResult GetJobByID(int id)
-        {
-            var job = jobsService.GetJobByID(id);
-
-            if (job == null)
-                return NotFound();
-            return Ok(job);
-        }
-
         [HttpPost("add-job")]
-        [Authorize(Roles = "Admin")]
         public IActionResult Add(CreateJobDto payload)
         {
             var result = jobsService.AddJob(payload);
@@ -55,6 +42,8 @@ namespace Controllers
 
             return Ok(result);
         }
+
+
         [HttpGet("seasonal-jobs")]
         [AllowAnonymous]
         public IActionResult GetSeasonalJobs() 

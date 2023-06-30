@@ -38,6 +38,7 @@ namespace Jobs_Platform.Services
                 salary = payload.salary,
                 location = payload.location,
                 industry = payload.industry,
+                type = payload.type,
             };
 
             unitOfWork.Jobs.AddJob(newJob);

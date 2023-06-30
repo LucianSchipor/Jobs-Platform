@@ -13,7 +13,7 @@ namespace Core.Dtos
     {
         public string description { get; set; }
         public SalaryEnum salary { get; set; }
-        private JobType type { get; set; }
+        public JobType type { get; set; }
         public string location { get; set; }
         public IndustryEnum industry { get; set; }
         public ExperienceEnum experience { get; set; }
