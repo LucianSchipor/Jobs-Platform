@@ -34,10 +34,6 @@ namespace DataLayer.Repositories
             _dbContext.SaveChanges();
         }
 
-        public void AddAplication(Application app)
-        {
-            _dbContext.Applications.Add(app);
-            _dbContext.SaveChanges();
-        }
+       
     }
 }

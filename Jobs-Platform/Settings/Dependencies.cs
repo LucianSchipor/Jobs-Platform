@@ -34,6 +34,7 @@ namespace Jobs_Platform.Settings
             services.AddScoped<JobsService>();
             services.AddScoped<AccountService>();
             services.AddScoped<AuthenticationService>();
+            services.AddScoped<ApplicationsService>();
 
 
 
@@ -45,6 +46,8 @@ namespace Jobs_Platform.Settings
             services.AddScoped<JobsRepository>();
             services.AddScoped<AccountRepository>();
             services.AddScoped<UnitOfWork>();
+            services.AddScoped<ApplicationsRepository>();
+
         }
     }
 }

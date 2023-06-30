@@ -59,25 +59,6 @@ namespace Jobs_Platform.Services
             return newJob;
         }
 
-        public Application CreateApplication(Application payload)
-        {
-            if(payload == null) { return null; }
-
-            Application app = new Application
-            {
-                JobId = payload.JobId,
-                Studies = payload.Studies,
-                Industry = payload.Industry,
-                Experience = payload.Experience,
-                MessageForEmployer = payload.MessageForEmployer,
-                Email = payload.Email,
-            };
-
-            unitOfWork.Jobs.AddAplication(app);
-
-            return app;
-        }
-
         public List<Job> GetJobByInfos(Application payload)
         {
             //returns jobs by applier's info

@@ -46,23 +46,6 @@ namespace Controllers
             return Ok(result);
         }
 
-        /// <summary>
-        /// You need an Applier or an Admin account. You get all jobs, and based on their ID, you create applications.
-        /// </summary>
-        /// <param name="payload"></param>
-        /// <returns></returns>
-        [HttpPost("create-application")]
-        [Authorize(Roles = "Admin, Applier")]
-        public IActionResult CreateApplication(Application payload)
-        {
-            var result = jobsService.CreateApplication(payload);
-            if(result == null)
-            {
-                return BadRequest("Application cannot be created.");
-            }
-            return Ok(result);
-        }
-
         [HttpGet("seasonal-jobs")]
         [AllowAnonymous]
         public IActionResult GetSeasonalJobs()

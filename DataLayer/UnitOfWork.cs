@@ -9,13 +9,16 @@ namespace DataLayer
         public JobsRepository Jobs { get; set; }
         public AccountRepository Accounts { get; set; }
 
+        public ApplicationsRepository Applications { get; set; }
+
         private readonly AppDBContext _dbContext;
 
-        public UnitOfWork(AppDBContext dBContext, JobsRepository jobsRepository, AccountRepository accountRepository)
+        public UnitOfWork(AppDBContext dBContext, JobsRepository jobsRepository, AccountRepository accountRepository, ApplicationsRepository applicationsRepository)
         {
             _dbContext = dBContext;
             Jobs = jobsRepository;
             Accounts = accountRepository;
+            Applications = applicationsRepository;
         }
           public void Add(ref Job job)
         {

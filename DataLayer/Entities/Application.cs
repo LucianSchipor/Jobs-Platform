@@ -22,8 +22,6 @@ namespace DataLayer.Entities
         }
 
         public int JobId { get; set; }
-        [JsonIgnore]
-        public Job Job { get; set; }
         public StudiesEnum Studies { get; set; }
         public IndustryEnum Industry { get; set; }
         public ExperienceEnum Experience { get; set; }
