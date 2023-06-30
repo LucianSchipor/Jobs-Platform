@@ -1,4 +1,5 @@
 ﻿using DataLayer.Entities.Enums;
+using DataLayer.Entities.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,6 @@ namespace DataLayer.Entities
             this.Industry = 0;
             this.Experience = 0;
             MessageForEmployer = string.Empty;
-            this.Salary = 0;
         }
 
         public int JobId { get; set; }
@@ -26,8 +26,8 @@ namespace DataLayer.Entities
         public IndustryEnum Industry { get; set; }
         public ExperienceEnum Experience { get; set; }
         public string MessageForEmployer { get; set; }
-
-        public SalaryEnum Salary { get; set; }
+        public string Email { get; set; }
+        public Account Account { get; set; }
     }
 
 

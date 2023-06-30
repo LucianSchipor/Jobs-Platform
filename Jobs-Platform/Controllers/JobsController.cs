@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.WebSockets;
+using System.Text.Json.Serialization;
 
 namespace Controllers
 {
@@ -23,8 +24,8 @@ namespace Controllers
         /// Requires an ADMIN account.
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [HttpGet("get-all-jobs")]
+        [Authorize(Roles = "Admin, Applier")]
         public ActionResult<List<Job>> GetJobs()
         {
             var result = jobsService.GetJobs();
@@ -32,6 +33,7 @@ namespace Controllers
         }
 
         [HttpPost("add-job")]
+        [Authorize(Roles = "Admin, Employer")]
         public IActionResult Add(CreateJobDto payload)
         {
             var result = jobsService.AddJob(payload);
@@ -43,73 +45,85 @@ namespace Controllers
             return Ok(result);
         }
 
+        [HttpPost("create-application")]
+        [Route("{jobId}")]
+        [Authorize(Roles = "Admin, Applier")]
+        public IActionResult CreateApplication(Application payload)
+        {
+            var result = jobsService.CreateApplication(payload);
+            if(result == null)
+            {
+                return BadRequest("Application cannot be created.");
+            }
+            return Ok(result);
+        }
 
         [HttpGet("seasonal-jobs")]
         [AllowAnonymous]
-        public IActionResult GetSeasonalJobs() 
+        public IActionResult GetSeasonalJobs()
         {
             var seasonals = jobsService.GetSeasonalJobs();
             return seasonals != null ? Ok(seasonals) : BadRequest();
         }
         [HttpGet("practice-jobs")]
         [AllowAnonymous]
-        public IActionResult GetPracticeJobs() 
+        public IActionResult GetPracticeJobs()
         {
             var practical = jobsService.GetPracticeJobs();
             return practical != null ? Ok(practical) : BadRequest();
         }
         [HttpGet("internship-jobs")]
         [AllowAnonymous]
-        public IActionResult GetInternshiplJobs() 
+        public IActionResult GetInternshiplJobs()
         {
             var internships = jobsService.GetInternshiplJobs;
             return internships != null ? Ok(internships) : BadRequest();
         }
         [HttpGet("part-time-jobs")]
         [AllowAnonymous]
-        public IActionResult GetPartTimeJobs() 
+        public IActionResult GetPartTimeJobs()
         {
             var partTime = jobsService.GetPartTimeJobs();
             return partTime != null ? Ok(partTime) : BadRequest();
         }
         [HttpGet("full-time-jobs")]
         [AllowAnonymous]
-        public IActionResult GetFullTimeJobs() 
+        public IActionResult GetFullTimeJobs()
         {
             var fullTime = jobsService.GetFullTimeJobs();
             return fullTime != null ? Ok(fullTime) : BadRequest();
         }
         [HttpGet("it-jobs")]
         [AllowAnonymous]
-        public IActionResult GetITJobs() 
+        public IActionResult GetITJobs()
         {
             var itJobs = jobsService.GetITJobs();
             return itJobs != null ? Ok(itJobs) : BadRequest();
         }
         [HttpGet("agriculture-jobs")]
         [AllowAnonymous]
-        public IActionResult GetAgricultureJobs() 
+        public IActionResult GetAgricultureJobs()
         {
             var agriculture = jobsService.GetAgricultureJobs();
             return agriculture != null ? Ok(agriculture) : BadRequest();
         }
         [HttpGet("economy-jobs")]
         [AllowAnonymous]
-        public IActionResult GetEconomyJobs() 
+        public IActionResult GetEconomyJobs()
         {
             var economy = jobsService.GetEconomyJobs();
             return economy != null ? Ok(economy) : BadRequest();
         }
         [HttpGet("arhitecture-jobs")]
         [AllowAnonymous]
-        public IActionResult GetArhitectureJobs() 
+        public IActionResult GetArhitectureJobs()
         {
             var arhitecture = jobsService.GetArhitectureJobs();
             return arhitecture != null ? Ok(arhitecture) : BadRequest();
         }
         [HttpGet("healthcare-jobs")]
         [AllowAnonymous]
-        public IActionResult GetHealthcareJobs() 
+        public IActionResult GetHealthcareJobs()
         {
             var healthcare = jobsService.GetHealtchcareJobs();
             return healthcare != null ? Ok(healthcare) : BadRequest();

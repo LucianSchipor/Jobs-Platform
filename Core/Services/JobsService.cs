@@ -28,9 +28,9 @@ namespace Jobs_Platform.Services
             return unitOfWork.Jobs.GetJobByID(id);
         }
 
-        public bool AddJob(CreateJobDto payload)
+        public Job AddJob(CreateJobDto payload)
         {
-            if (payload == null) { return false; }
+            if (payload == null) { return null; }
 
             Job newJob = new Job
             {
@@ -42,7 +42,26 @@ namespace Jobs_Platform.Services
             };
 
             unitOfWork.Jobs.AddJob(newJob);
-            return true;
+            return newJob;
+        }
+
+        public Application CreateApplication(Application payload)
+        {
+            if(payload == null) { return null; }
+
+            Application app = new Application
+            {
+                JobId = payload.JobId,
+                Studies = payload.Studies,
+                Industry = payload.Industry,
+                Experience = payload.Experience,
+                MessageForEmployer = payload.MessageForEmployer,
+                Email = payload.Email,
+            };
+
+            unitOfWork.Jobs.AddAplication(app);
+
+            return app;
         }
 
         public List<Job> GetJobByInfos(Application payload)
@@ -52,12 +71,6 @@ namespace Jobs_Platform.Services
             if (!GetJobs().Where(c => c.industry == payload.Industry).IsNullOrEmpty())
                 GetJobs().
                      Where(c => c.industry == payload.Industry)
-                     .ToList()
-                         .ForEach(c => BigList.Add(c));
-
-            if (!GetJobs().Where(c => c.salary == payload.Salary).IsNullOrEmpty())
-                GetJobs().
-                     Where(c => c.salary == payload.Salary)
                      .ToList()
                          .ForEach(c => BigList.Add(c));
 
