@@ -50,13 +50,29 @@ namespace Jobs_Platform.Controllers
             return Ok(result);
         }
 
-       
+       /// <summary>
+       /// You need an Applier account. You will view 
+       /// </summary>
+       /// <param name="Email"></param>
+       /// <returns></returns>
         [HttpGet("applier-view-applications")]
         [Authorize(Roles ="Admin, Applier")]
         public IActionResult GetApplicationsForApplier(string Email)
         {
             var result = _applicationsService.Applier_ViewJobApplications(Email);
             return Ok(result);
+        }
+
+        [HttpDelete("delete-app")]
+        [Authorize(Roles ="Admin, Applier")]
+        public IActionResult DeleteApplication(int AppId, string Email)
+        {
+           
+            if(_applicationsService.DeleteApp(AppId, Email))
+                return Ok("Application deleted.");
+
+            return BadRequest("Not found application or not your application.");
+            
         }
     }
 }

@@ -48,6 +48,7 @@ namespace Jobs_Platform.Services
 
             Job newJob = new Job
             {
+                name = payload.name,
                 description = payload.description,
                 salary = payload.salary,
                 location = payload.location,

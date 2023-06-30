@@ -11,9 +11,15 @@ namespace Core.Dtos
 {
     public class CreateJobDto
     {
+        [Required]
+        public string name { get; set; }
         public string description { get; set; }
+
+        [Required]
         public SalaryEnum salary { get; set; }
         public JobType type { get; set; }
+
+        [Required]
         public string location { get; set; }
         public IndustryEnum industry { get; set; }
         public ExperienceEnum experience { get; set; }

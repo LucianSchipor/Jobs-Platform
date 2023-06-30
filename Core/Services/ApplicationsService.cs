@@ -37,7 +37,7 @@ namespace Core.Services
                 MessageForEmployer = payload.MessageForEmployer,
                 Email = payload.Email,
             };
-            
+
             _unitOfWork.Applications.AddAplication(app);
 
             return app;
@@ -53,6 +53,29 @@ namespace Core.Services
         {
             var result = _unitOfWork.Applications.Applier_GetApps(Email).ToList();
             return result;
+        }
+
+        public bool DeleteApp(int AppID, string Email)
+        {
+
+            var val = _unitOfWork.Applications.GetAll().FirstOrDefault(a => a.Id == AppID);
+
+            if (val == null)
+                return false;
+
+            var userTryingToDelete = _unitOfWork.Accounts.GetAll().FirstOrDefault(c => c.Email == Email);
+            try
+            {
+                if (!userTryingToDelete.Role.Equals(3))
+                    if (val.Email != Email)
+                        return false;
+            }
+            catch
+            {
+                throw new Exception("Utilizatorul cu email-ul specificat nu exista.");
+            }
+            _unitOfWork.Applications.DeleteApp(AppID, Email);
+            return true;
         }
     }
 }

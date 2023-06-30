@@ -33,5 +33,14 @@ namespace DataLayer.Repositories
             var result = GetRecords().Where(a => a.Email == email).ToList();
             return result;
         }
+
+        public bool DeleteApp(int id, string Email)
+        {
+           
+
+            GetRecords().Where(a => a.Id == id).ExecuteDelete();
+            return true;
+
+        }
     }
 }
